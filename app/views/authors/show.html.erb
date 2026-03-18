@@ -1,2 +1,31 @@
-<h1>Authors#show</h1>
-<p>Find me in app/views/authors/show.html.erb</p>
+<h1><%= @author.name %></h1>
+
+<% if @author.birth_date.present? %>
+  <p><strong>Born:</strong> <%= @author.birth_date %></p>
+<% end %>
+
+<% if @author.bio.present? %>
+  <p><%= @author.bio %></p>
+<% end %>
+
+<hr>
+<h4>Books by <%= @author.name %></h4>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @author.books.each do |book| %>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= book.title %></h5>
+        </div>
+        <div class="card-footer">
+          <%= link_to "View Book", book_path(book),
+              class: "btn btn-sm btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "← All Authors", authors_path,
+    class: "btn btn-outline-secondary mt-3" %>

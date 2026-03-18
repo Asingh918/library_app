@@ -1,2 +1,16 @@
-<h1>Subjects#index</h1>
-<p>Find me in app/views/subjects/index.html.erb</p>
+<h1 class="mb-4">All Subjects</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @subjects.each do |subject| %>
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <h5 class="card-title"><%= subject.name %></h5>
+          <p class="text-muted"><%= subject.books.count %> books</p>
+          <%= link_to "Browse Books", subject_path(subject),
+              class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

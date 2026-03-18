@@ -1,2 +1,52 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h1 class="mb-4">About This App</h1>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4>Data Sources</h4>
+        <p>This application uses data from the following three sources:</p>
+        <ul>
+          <li>
+            <strong>Open Library API</strong> —
+            A free open API by the Internet Archive containing millions
+            of books and authors. No API key required.
+            Visit <a href="https://openlibrary.org/developers/api" target="_blank">openlibrary.org</a>
+          </li>
+          <li>
+            <strong>Custom CSV file</strong> —
+            A curated list of book subjects and genres used to
+            organize the collection into categories.
+          </li>
+          <li>
+            <strong>Faker Gem</strong> —
+            Randomly generated book reviews to simulate
+            real user-generated content.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4>Database Schema</h4>
+        <p>The app uses 5 tables:</p>
+        <ul>
+          <li><strong>Books</strong> — title, year, cover image, subject</li>
+          <li><strong>Authors</strong> — name, bio, birth date</li>
+          <li><strong>Subjects</strong> — name/category of books</li>
+          <li><strong>Reviews</strong> — body, score, reviewer name</li>
+          <li><strong>AuthorBooks</strong> — join table linking books and authors</li>
+        </ul>
+        <h5 class="mt-3">Associations</h5>
+        <ul>
+          <li>A subject has many books</li>
+          <li>A book belongs to a subject</li>
+          <li>Books and authors have a many-to-many relationship</li>
+          <li>A book has many reviews</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

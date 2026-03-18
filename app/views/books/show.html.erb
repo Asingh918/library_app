@@ -1,2 +1,57 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="row">
+  <div class="col-md-3">
+    <% if @book.cover_url.present? %>
+      <img src="<%= @book.cover_url %>" class="img-fluid rounded shadow">
+    <% else %>
+      <div class="bg-secondary d-flex align-items-center justify-content-center rounded"
+           style="height: 300px;">
+        <span class="text-white fs-1">📚</span>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-9">
+    <h1><%= @book.title %></h1>
+
+    <% if @book.subject.present? %>
+      <p>
+        <strong>Subject:</strong>
+        <%= link_to @book.subject.name, subject_path(@book.subject),
+            class: "badge bg-secondary text-decoration-none" %>
+      </p>
+    <% end %>
+
+    <% if @book.first_publish_year.present? %>
+      <p><strong>First Published:</strong> <%= @book.first_publish_year %></p>
+    <% end %>
+
+    <% if @book.authors.any? %>
+      <p>
+        <strong>Authors:</strong>
+        <% @book.authors.each do |author| %>
+          <%= link_to author.name, author_path(author),
+              class: "badge bg-primary text-decoration-none me-1" %>
+        <% end %>
+      </p>
+    <% end %>
+
+    <hr>
+    <h4>Reviews</h4>
+    <% if @book.reviews.any? %>
+      <% @book.reviews.each do |review| %>
+        <div class="card mb-2">
+          <div class="card-body">
+            <p class="mb-1"><%= review.body %></p>
+            <small class="text-muted">
+              <strong><%= review.reviewer_name %></strong>
+              · Score: <%= review.score %>/5
+            </small>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-muted">No reviews yet.</p>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "← Back to Books", books_path, class: "btn btn-outline-secondary mt-3" %>
